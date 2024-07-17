@@ -58,6 +58,7 @@ interface NavigateEvent extends Event {
     readonly sourceElement: Element | null;
 
     intercept(options?: NavigationInterceptOptions): void;
+    commit(): void;
     scroll(): void;
 }
 
@@ -166,6 +167,7 @@ interface NavigationInterceptOptions {
     handler?: NavigationInterceptHandler;
     focusReset?: NavigationFocusReset;
     scroll?: NavigationScrollBehavior;
+    commit?: NavigationCommitBehavior;
 }
 
 /** @see https://html.spec.whatwg.org/multipage/nav-history-apis.html#navigationtype */
@@ -182,3 +184,6 @@ type NavigationFocusReset = "after-transition" | "manual";
 
 /** @see https://html.spec.whatwg.org/multipage/nav-history-apis.html#navigationscrollbehavior */
 type NavigationScrollBehavior = "after-transition" | "manual";
+
+/** @see https://github.com/WICG/navigation-api?tab=readme-ov-file#deferred-commit */
+type NavigationCommitBehavior = "after-transition" | "immediate";
